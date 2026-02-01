@@ -24,4 +24,5 @@ Please see instructions in README.md file
 ### How you approached stability (timeouts, retries, selectors, test data)
 - Added slow mode for human convenience.
 - Added retries in playwright.config.ts when run in CI, but not for local run.
+- Added an api test driven test since it is a good practice when testing a data oriented features.
 
