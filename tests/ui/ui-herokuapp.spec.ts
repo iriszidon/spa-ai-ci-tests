@@ -1,27 +1,28 @@
 import { test, expect } from '@playwright/test';
-
+import { HerokuAppHome } from '../../pages/herokuapp';
 
 test.describe("Select a Dropdown Option", () => {
+    let home: HerokuAppHome;
 
     test.beforeEach(async ({ page }) => {
-        // Navigate to the website before each test
-        await page.goto('https://the-internet.herokuapp.com');
+        // Use the HerokuApp page object to navigate to the site
+        home = new HerokuAppHome(page);
+        await home.goto();
     });
 
-    test('Dropdown List - Select Option 2', {tag: '@dropdown'}, async ({ page }) => {
-        // Click the 'Dropdown List' link
-        await page.click('a[href="/dropdown"]');
+    test('Dropdown List - Select Option 2', { tag: '@dropdown' }, async ({ page }, testInfo) => {
+        // Add repository-specific tag for filtering
+        testInfo.annotations.push({ type: 'tag', description: 'herokuapp' });
 
-        // Get the dropdown element
-        const dropdown = page.locator('#dropdown');
+        // Use the page object to navigate to the dropdown example
+        await home.navigateToDropdown();
 
-        // Select Option 1
-        await dropdown.selectOption('1');
+        // Use the page-object methods to interact with the dropdown
+        await home.selectDropdownByValue('1');
+        await home.selectDropdownByValue('2');
 
-        // Select Option 2
-        await dropdown.selectOption('2');
-
-        // Assert that Option 2 is selected
-        await expect(dropdown).toHaveValue('2');
+        // Assert that Option 2 is selected via the page object
+        const selected = await home.getSelectedDropdownValue();
+        expect(selected).toBe('2');
     });
 });
