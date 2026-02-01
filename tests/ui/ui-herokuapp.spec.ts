@@ -30,6 +30,39 @@ test.describe("Test heroku app page", () => {
         expect(selected).toBe('2');
     });
 
+        test('Add Remove Elements - Add elements', { tag: '@add-remove-elements' }, async ({ page }, testInfo) => {
+        // Add repository-specific tag for filtering
+        testInfo.annotations.push({ type: 'tag', description: 'Add 5 elements to the page' });
+
+        // Navigate to the Add/Remove Elements example and exercise it
+        await home.navigateToAddRemoveElements();
+        const addRemove = new AddRemoveElementsPage(page);
+
+        // Add 2 elements
+        await addRemove.addElements(5);
+
+        // Verify the number of delete buttons is NOT 3
+        const count = await addRemove.getDeleteButtonsCount();
+        expect(count).toBe(5);
+    });
+
+    test('Add Remove Elements - Delete elements', { tag: '@add-remove-elements' }, async ({ page }, testInfo) => {
+        // Add repository-specific tag for filtering
+        testInfo.annotations.push({ type: 'tag', description: 'Add 5 elements to the page and delete one element' });
+
+        // Navigate to the Add/Remove Elements example and exercise it
+        await home.navigateToAddRemoveElements();
+        const addRemove = new AddRemoveElementsPage(page);
+
+        // Add 2 elements
+        await addRemove.addElements(5);
+        await addRemove.deleteAt(4);
+
+        // Verify the number of delete buttons is NOT 3
+        const count = await addRemove.getDeleteButtonsCount();
+        expect(count).toBe(4);
+    });
+
     test('Add Remove Elements - Negative Test', { tag: '@add-remove-elements' }, async ({ page }, testInfo) => {
         // Add repository-specific tag for filtering
         testInfo.annotations.push({ type: 'tag', description: '1 negative case' });
