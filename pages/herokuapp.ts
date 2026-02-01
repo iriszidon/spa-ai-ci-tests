@@ -1,8 +1,12 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { Page, Locator } from '@playwright/test';
 
 export class HerokuAppHome {
     readonly page: Page;
-    readonly url = 'https://the-internet.herokuapp.com';
+    // Initialize from HOME_URL in .env, fallback to the original URL
+    readonly url = process.env.HOME_URL ?? 'https://the-internet.herokuapp.com';
     readonly dropdownLink: Locator;
     readonly dropdown: Locator;
 
