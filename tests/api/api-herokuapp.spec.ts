@@ -4,7 +4,7 @@ dotenv.config();
 import { test, expect } from '@playwright/test';
 
 test.describe('API - Todos', () => {
-  test('GET /todos/1 returns expected title', async ({ request }) => {
+  test('GET /todos/1 returns expected title', { tag: '@api-sample' }, async ({ request }) => {
     const base = process.env.TODOS_API_URL;
     if (!base) throw new Error('TODOS_API_URL is not set in environment');
 
@@ -15,7 +15,7 @@ test.describe('API - Todos', () => {
     expect(body.title).toBe('delectus aut autem');
   });
 
-  test('GET /todos/1 does not return unexpected title', async ({ request }) => {
+  test('GET /todos/1 does not return unexpected title', { tag: '@api-sample' }, async ({ request }) => {
     const base = process.env.TODOS_API_URL;
     if (!base) throw new Error('TODOS_API_URL is not set in environment');
 
@@ -26,7 +26,7 @@ test.describe('API - Todos', () => {
     expect(body.title).not.toBe('unexpected title');
   });
 
-  test('GET /users returns array of users matching expected schema', async ({ request }) => {
+  test('GET /users returns array of users matching expected schema', { tag: '@api-sample' }, async ({ request }) => {
     const base = process.env.TODOS_API_URL;
     if (!base) throw new Error('TODOS_API_URL is not set in environment');
 
@@ -65,7 +65,7 @@ test.describe('API - Todos', () => {
     }
   });
 
-  test('POST /posts creates a new post and verifies the response title is unique', async ({ request }) => {
+  test('POST /posts creates a new post and verifies the response title is unique', { tag: '@api-sample' }, async ({ request }) => {
     const base = process.env.TODOS_API_URL;
     if (!base) throw new Error('TODOS_API_URL is not set in environment');
 
