@@ -1,8 +1,9 @@
 # Welcome to spa-ai-ci-tests repository :)
 ## Prerequisites
 Install node
+
 Install playwright by ``npm init playwright@latest``
-## Install the following npm packages
+# Install the following npm packages
 ``dotenv``
 # How to run UI tests
 ## Run all the tests in a file
