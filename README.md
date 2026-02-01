@@ -6,7 +6,7 @@ Install playwright by
 ``npm init playwright@latest``
 
 ## Install the following npm packages
-``dotenv``
+``npm install dotenv``
 # How to run UI tests
 ## Run all the tests in a file
 ``npx playwright test tests/ui/ui-herokuapp.spec.ts --headed``
@@ -17,11 +17,11 @@ i.e. tagname is @dropdown
 ``npx playwright test --grep @dropdown --headed``
 # How to run API tests
 
-run the tests by file name - 
+## Run the tests by file name 
 
 ``npx playwright test tests/api/api-herokuapp.spec.ts ``
 
-run the tests by tag - 
+## Run the tests by tag 
 
 ``npx playwright test --grep @api-sample``
 
