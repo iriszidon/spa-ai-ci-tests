@@ -1,8 +1,12 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { Page, Locator } from '@playwright/test';
 
 export class AddRemoveElementsPage {
     readonly page: Page;
-    readonly url = 'https://the-internet.herokuapp.com/add_remove_elements/';
+    // Initialize from HOME_URL in .env (no fallback)
+    readonly url = `${process.env.HOME_URL}/add_remove_elements/`;
     readonly addButton: Locator;
     readonly deleteButtons: Locator;
 

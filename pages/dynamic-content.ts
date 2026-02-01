@@ -2,7 +2,7 @@ import { Page, Locator } from '@playwright/test';
 
 export class DynamicContentPage {
     readonly page: Page;
-    readonly url = 'https://the-internet.herokuapp.com/dynamic_content';
+    readonly url = `${process.env.HOME_URL}/dynamic_content/`;
     readonly rows: Locator;
     readonly images: Locator;
     readonly clickHereLink: Locator;
