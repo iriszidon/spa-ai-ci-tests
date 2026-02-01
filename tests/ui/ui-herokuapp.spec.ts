@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { HerokuAppHome } from '../../pages/herokuapp';
 import { DropdownPage } from '../../pages/dropdown';
+import { AddRemoveElementsPage } from '../../pages/add-remove-elements';
 
-test.describe("Select a Dropdown Option", () => {
+test.describe("Test heroku app page", () => {
     let home: HerokuAppHome;
     let dropdown: DropdownPage;
 
@@ -14,7 +15,7 @@ test.describe("Select a Dropdown Option", () => {
 
     test('Dropdown List - Select Option 2', { tag: '@dropdown' }, async ({ page }, testInfo) => {
         // Add repository-specific tag for filtering
-        testInfo.annotations.push({ type: 'tag', description: 'herokuapp' });
+        testInfo.annotations.push({ type: 'tag', description: '1 happy path end-to-end flow' });
 
         // Use the page object to navigate to the dropdown example
         await home.navigateToDropdown();
@@ -27,5 +28,21 @@ test.describe("Select a Dropdown Option", () => {
         // Assert that Option 2 is selected via the Dropdown page object
         const selected = await dropdown.getSelectedValue();
         expect(selected).toBe('2');
+    });
+
+    test('Add Remove Elements - Negative Test', { tag: '@add-remove-elements' }, async ({ page }, testInfo) => {
+        // Add repository-specific tag for filtering
+        testInfo.annotations.push({ type: 'tag', description: '1 negative case' });
+
+        // Navigate to the Add/Remove Elements example and exercise it
+        await home.navigateToAddRemoveElements();
+        const addRemove = new AddRemoveElementsPage(page);
+
+        // Add 2 elements
+        await addRemove.addElements(2);
+
+        // Verify the number of delete buttons is NOT 3
+        const count = await addRemove.getDeleteButtonsCount();
+        expect(count).not.toBe(3);
     });
 });
