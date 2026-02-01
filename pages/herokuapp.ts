@@ -10,12 +10,14 @@ export class HerokuAppHome {
     readonly dropdownLink: Locator;
     readonly dropdown: Locator;
     readonly addRemoveLink: Locator;
+    readonly dynamicContentLink: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.dropdownLink = page.locator('a[href="/dropdown"]');
         this.dropdown = page.locator('#dropdown');
         this.addRemoveLink = page.locator('a[href="/add_remove_elements/"]');
+        this.dynamicContentLink = page.locator('a[href="/dynamic_content"]');
     }
 
     /** Navigate to the home page URL */
@@ -31,6 +33,11 @@ export class HerokuAppHome {
     /** Convenience to click the Add/Remove Elements example link */
     async navigateToAddRemoveElements() {
         await this.addRemoveLink.click();
+    }
+
+    /** Convenience to click the Dynamic Content example link */
+    async navigateToDynamicContent() {
+        await this.dynamicContentLink.click();
     }
 
     /** Select a dropdown option by value (e.g., '1', '2') */
