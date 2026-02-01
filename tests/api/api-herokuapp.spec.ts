@@ -69,12 +69,16 @@ test.describe('API - Todos', () => {
     const base = process.env.TODOS_API_URL;
     if (!base) throw new Error('TODOS_API_URL is not set in environment');
 
-    // helper to generate a 8-letter random GUID (lowercase letters)
+    // helper to generate a random GUID (lowercase letters) of length from env
     const randomLetters = (len: number) => {
       const chars = 'abcdefghijklmnopqrstuvwxyz';
       return Array.from({ length: len }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
     };
-    const randomId = randomLetters(8);
+    const lenStr = process.env.RANDOM_STRING_LENGTH;
+    if (!lenStr) throw new Error('RANDOM_STRING_LENGTH is not set in environment');
+    const len = parseInt(lenStr, 10);
+    if (Number.isNaN(len) || len <= 0) throw new Error('RANDOM_STRING_LENGTH must be a positive integer');
+    const randomId = randomLetters(len);
 
     const newPost = {
       userId: 1,
