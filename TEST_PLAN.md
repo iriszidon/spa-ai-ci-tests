@@ -16,15 +16,12 @@ All of those features are sucessful candidates for UI test and have measurable o
 Due to time limitations the rest of the featurtes were not automated.
 
 ### Risks/assumptions
-Assuming the 3rd party api and website are up and running.
-
-Assuming that the urls in .env file are valid.
-
-In case of changes, tests might fail.
+- Assuming the 3rd party api and website are up and running.
+- Assuming that the urls in .env file are valid.
+- In case of changes, tests might fail.
 ### How to run locally + in CI
 Please see instructions in README.md file
 ### How you approached stability (timeouts, retries, selectors, test data)
-Added slow mode for human convenience.
-
-Added retries in playwright.config.ts when run in CI, but not for local run.
+- Added slow mode for human convenience.
+- Added retries in playwright.config.ts when run in CI, but not for local run.
 

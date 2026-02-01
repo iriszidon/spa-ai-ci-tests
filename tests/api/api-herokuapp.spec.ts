@@ -3,11 +3,12 @@ dotenv.config();
 
 import { test, expect } from '@playwright/test';
 
+// Make base a single global for the entire test file
+const base = process.env.TODOS_API_URL;
+if (!base) throw new Error('TODOS_API_URL is not set in environment');
+
 test.describe('API - Todos', () => {
   test('GET /todos/1 returns expected title', { tag: '@api-sample' }, async ({ request }) => {
-    const base = process.env.TODOS_API_URL;
-    if (!base) throw new Error('TODOS_API_URL is not set in environment');
-
     const res = await request.get(`${base}todos/1`);
     expect(res.ok()).toBeTruthy();
 
@@ -16,9 +17,6 @@ test.describe('API - Todos', () => {
   });
 
   test('GET /todos/1 does not return unexpected title', { tag: '@api-sample' }, async ({ request }) => {
-    const base = process.env.TODOS_API_URL;
-    if (!base) throw new Error('TODOS_API_URL is not set in environment');
-
     const res = await request.get(`${base}todos/1`);
     expect(res.ok()).toBeTruthy();
 
@@ -27,9 +25,6 @@ test.describe('API - Todos', () => {
   });
 
   test('GET /users returns array of users matching expected schema', { tag: '@api-sample' }, async ({ request }) => {
-    const base = process.env.TODOS_API_URL;
-    if (!base) throw new Error('TODOS_API_URL is not set in environment');
-
     const res = await request.get(`${base}users`);
     expect(res.ok()).toBeTruthy();
 
@@ -66,9 +61,6 @@ test.describe('API - Todos', () => {
   });
 
   test('POST /posts creates a new post and verifies the response title is unique', { tag: '@api-sample' }, async ({ request }) => {
-    const base = process.env.TODOS_API_URL;
-    if (!base) throw new Error('TODOS_API_URL is not set in environment');
-
     // helper to generate a random GUID (lowercase letters) of length from env
     const randomLetters = (len: number) => {
       const chars = 'abcdefghijklmnopqrstuvwxyz';
@@ -97,4 +89,19 @@ test.describe('API - Todos', () => {
     expect(created.userId).toBe(newPost.userId);
     expect(created.body).toBe(newPost.body);
   });
+});
+
+test.describe('API - Data driven test', () => {
+  const ids = [1, 2, 3, 4, 5];
+
+  for (const id of ids) {
+    test(`GET /todos/${id} returns the expected resource (id=${id})`, { tag: '@api-sample' }, async ({ request }) => {
+      const res = await request.get(`${base}todos/${id}`);
+      expect(res.ok()).toBeTruthy();
+      const body = await res.json();
+
+      // Verify the returned resource matches the injected id
+      expect(body.id).toBe(id);
+    });
+  }
 });
