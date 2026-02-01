@@ -1,5 +1,5 @@
 ## Test Plan for spa-ai-ci-tests
-This test suite contains 5 UI tests and 4 api tests.
+This test suite contains UI tests and api tests.
 - UI website is ``https://the-internet.herokuapp.com``
 - API URL is ``https://jsonplaceholder.typicode.com/``
 ### Automated the following features

@@ -1,4 +1,8 @@
 # Welcome to spa-ai-ci-tests repository :)
+This test suite contains UI tests and api tests.
+- UI website is ``https://the-internet.herokuapp.com``
+- API URL is ``https://jsonplaceholder.typicode.com/``
+- Videos and screenshots are produces in case of a failure.
 ## Prerequisites
 Install node
 
