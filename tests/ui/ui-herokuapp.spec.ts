@@ -29,6 +29,8 @@ test.describe("Test heroku app page", () => {
         // Assert that Option 2 is selected via the Dropdown page object
         const selected = await dropdown.getSelectedValue();
         expect(selected).toBe('2');
+        // Try this to see a failure
+        // expect(selected).toBe('9'); 
     });
 
         test('Add Remove Elements - Add elements', { tag: '@add-remove-elements' }, async ({ page }, testInfo) => {
