@@ -9,11 +9,13 @@ export class HerokuAppHome {
     readonly url = process.env.HOME_URL ?? 'https://the-internet.herokuapp.com';
     readonly dropdownLink: Locator;
     readonly dropdown: Locator;
+    readonly addRemoveLink: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.dropdownLink = page.locator('a[href="/dropdown"]');
         this.dropdown = page.locator('#dropdown');
+        this.addRemoveLink = page.locator('a[href="/add_remove_elements/"]');
     }
 
     /** Navigate to the home page URL */
@@ -24,6 +26,11 @@ export class HerokuAppHome {
     /** Convenience to click the dropdown example link */
     async navigateToDropdown() {
         await this.dropdownLink.click();
+    }
+
+    /** Convenience to click the Add/Remove Elements example link */
+    async navigateToAddRemoveElements() {
+        await this.addRemoveLink.click();
     }
 
     /** Select a dropdown option by value (e.g., '1', '2') */
