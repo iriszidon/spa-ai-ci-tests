@@ -33,6 +33,8 @@ To open last HTML report run in the terminal:
 In file playwright.config.ts, edit the workers line to be
 
 ``workers: process.env.CI ? 1 : undefined,``
+
+
 instead of
 
 ``workers: process.env.CI ? 1 : 1,``
