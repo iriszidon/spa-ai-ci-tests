@@ -4,7 +4,10 @@ README must include:
 ● Install
 ● How to run UI tests
 # run all the tessts in a file
+bash
+``
 npx playwright test tests/ui/ui-herokuapp.spec.ts --headed
+``
 run the tests using a tag. i.e. tagname is @dropdown
 npx playwright test --grep @dropdown --headed
 ● How to run API tests
