@@ -1,9 +1,9 @@
 ## Test Plan for spa-ai-ci-tests
-This test suite contains UI tests and api tests.
+This test suite contains UI tests and API tests.
 - UI website is ``https://the-internet.herokuapp.com``
 - API URL is ``https://jsonplaceholder.typicode.com/``
 ### Automated the following features
-The following pages were automates in the UI tests:
+The following pages were automated in the UI tests:
 
 - Dropdown
 - Add elements
@@ -21,8 +21,8 @@ Due to time limitations the rest of the featurtes were not automated.
 - In case of changes, tests might fail.
 ### How to run locally + in CI
 Please see instructions in README.md file
-### How you approached stability (timeouts, retries, selectors, test data)
+### Stability approach (timeouts, retries, selectors, test data)
 - Added slow mode for human convenience.
-- Added retries in playwright.config.ts when run in CI, but not for local run.
-- Added an api test driven test since it is a good practice when testing a data oriented features.
+- Added retries in playwright.config.ts when run in CI, but not for a local run.
+- Added an api data-driven test since it is a good practice when testing a data oriented features.
 
