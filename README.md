@@ -26,6 +26,7 @@ i.e. tagname is @dropdown
 ``npx playwright test tests/api/api-herokuapp.spec.ts ``
 
 ## Run the tests by tag 
+i.e. tag name is @api-sample
 
 ``npx playwright test --grep @api-sample``
 
