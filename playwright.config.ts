@@ -25,8 +25,8 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Slow down Playwright actions by 750ms to make runs easier to observe */
-    launchOptions: { slowMo: 750 },
+    /* Slow down Playwright actions by 800ms to make runs easier to observe */
+    launchOptions: { slowMo: 800 },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
