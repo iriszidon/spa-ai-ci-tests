@@ -1,24 +1,34 @@
-import { test, expect } from '@playwright/test';
+import * as dotenv from "dotenv";
+dotenv.config();
+
+import { test, expect } from "@playwright/test";
 
 function fib(n: number): number {
   if (n <= 1) return n;
   return fib(n - 1) + fib(n - 2);
 }
 
-test.describe('Fibonacci', () => {
-  test('fib(5) returns 5', { tag: '@sample' }, () => {
+test.describe("Fibonacci", () => {
+  test("fib(5) returns 5", { tag: "@sample" }, () => {
     expect(fib(5)).toBe(5);
   });
 
-  test('fib(10) returns 55', { tag: '@sample' }, () => {
+  test("fib(10) returns 55", { tag: "@sample" }, () => {
     expect(fib(10)).toBe(55);
   });
 
-  test('fib(0) returns 0', { tag: '@sample' }, () => {
+  test("fib(0) returns 0", { tag: "@sample" }, () => {
     expect(fib(0)).toBe(0);
   });
 
-  test('fib(1) returns 1', { tag: '@sample' }, () => {
+  test("fib(1) returns 1", { tag: "@sample" }, () => {
     expect(fib(1)).toBe(1);
+  });
+});
+
+test.describe("SampleEnvTest", () => {
+  test("Get an ev var", () => {
+    const basush = process.env.TODOS_API_URL;
+    console.log(`This is a sample test ${basush}`);
   });
 });
