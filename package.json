@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "api-sample":"npx playwright test --grep @api-sample"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iriszidon/spa-ai-ci-tests.git"
